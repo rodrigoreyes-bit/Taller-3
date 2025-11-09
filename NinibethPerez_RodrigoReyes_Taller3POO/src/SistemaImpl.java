@@ -33,7 +33,7 @@ public class SistemaImpl implements Sistema {
 		t = new Scanner(file);
 		
 		while (t.hasNextLine()) {
-			usuarios.add(f.Crear_Usuario(t.nextLine().split("|")));
+			usuarios.add(f.Crear_Usuario(t.nextLine().split("\\|")));
 		}
 	}
 
@@ -44,7 +44,7 @@ public class SistemaImpl implements Sistema {
 
 		while (t.hasNextLine()) {
 			System.out.println("h");
-			proyectos.add(f.Crear_Proyecto(t.nextLine().split("|"), usuarios));
+			proyectos.add(f.Crear_Proyecto(t.nextLine().split("\\|"), usuarios));
 
 		}
 	}
@@ -55,7 +55,7 @@ public class SistemaImpl implements Sistema {
 		t = new Scanner(file);
 
 		while (t.hasNextLine()) {
-			tareas.add(f.Crear_Tarea(t.nextLine().split("|"), usuarios, proyectos));
+			tareas.add(f.Crear_Tarea(t.nextLine().split("\\|"), usuarios, proyectos));
 		}
 
 	}

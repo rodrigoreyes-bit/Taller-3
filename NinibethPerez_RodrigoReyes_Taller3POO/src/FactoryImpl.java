@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
 public class FactoryImpl implements Factory {
-	
+
 	private static FactoryImpl Instancia_Unica;
-	
-	
-	private FactoryImpl() {}
-	
+
+	private FactoryImpl() {
+	}
+
 	public static FactoryImpl InstanciarFactoryImpl() {
 		if (Instancia_Unica == null) {
 			Instancia_Unica = new FactoryImpl();
@@ -20,8 +20,6 @@ public class FactoryImpl implements Factory {
 	public Usuario Crear_Usuario(String[] Info) {
 		Usuario u = new Usuario(Info[0], Info[1], Info[2]);
 		return u;
-		
-		
 
 	}
 
@@ -60,6 +58,5 @@ public class FactoryImpl implements Factory {
 		return t;
 
 	}
-	
 
 }
