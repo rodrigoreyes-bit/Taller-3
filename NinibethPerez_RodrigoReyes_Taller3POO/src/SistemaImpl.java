@@ -125,11 +125,5 @@ public class SistemaImpl implements Sistema {
 		// TODO Auto-generated method stub
 		
 	}
-	public void tamaño() {
-		System.out.println(usuarios.size());
-		System.out.println(proyectos.size());
-		System.out.println(tareas.size());
-		
-	}
 
 }
