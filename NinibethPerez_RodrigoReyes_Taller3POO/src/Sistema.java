@@ -2,9 +2,9 @@ import java.io.FileNotFoundException;
 
 public interface Sistema {
 	
-	public void LecturaUsuarios() throws FileNotFoundException;
-	public void LecturaProyectos() throws FileNotFoundException;
-	public void LecturaTareas() throws FileNotFoundException;
+	public void LecturaUsuarios(String[] info); 
+	public void LecturaProyectos(String[] info); 
+	public void LecturaTareas(String[] info);
 	
 	public void VerListaProyectosTareas_Admin();
 	public void AgregarProyecto_Admin();

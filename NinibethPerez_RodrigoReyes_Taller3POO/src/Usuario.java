@@ -53,6 +53,18 @@ public class Usuario {
 	public void setProyectosResponsable(ArrayList<Proyectos> proyectosResponsable) {
 		ProyectosResponsable = proyectosResponsable;
 	}
+	public void agregarProyecto(Proyectos p) {
+		this.ProyectosResponsable.add(p);
+	}
+	public void agregarTarea(Tarea t) {
+		this.TareasResponsable.add(t);
+	}
+	@Override
+	public String toString() {
+		return "Usuario [Username=" + Username + ", Password=" + Password + "]";
+	}
+	
+	
 	
 
 }

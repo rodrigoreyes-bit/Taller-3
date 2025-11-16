@@ -1,13 +1,7 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class SistemaImpl implements Sistema {
 	
-	public File file;
-	public Scanner t;
-	public Scanner s = new Scanner(System.in);
 	public FactoryImpl f = FactoryImpl.InstanciarFactoryImpl();
 	public ArrayList<Usuario> usuarios = new ArrayList<>();
 	public ArrayList<Proyectos> proyectos = new ArrayList<>();
@@ -28,36 +22,32 @@ public class SistemaImpl implements Sistema {
 	}
 
 	@Override
-	public void LecturaUsuarios() throws FileNotFoundException {
-		file = new File("usuarios.txt");
-		t = new Scanner(file);
-		
-		while (t.hasNextLine()) {
-			usuarios.add(f.Crear_Usuario(t.nextLine().split("\\|")));
-		}
+	public void LecturaUsuarios(String[] info) {	
+		usuarios.add(f.Crear_Usuario(info));
+
 	}
 
 	@Override
-	public void LecturaProyectos() throws FileNotFoundException {
-		file = new File("proyectos.txt");
-		t = new Scanner(file);
+	public void LecturaProyectos(String[] info) {
+		proyectos.add(f.Crear_Proyecto(info, usuarios));
 
-		while (t.hasNextLine()) {
-			System.out.println("h");
-			proyectos.add(f.Crear_Proyecto(t.nextLine().split("\\|"), usuarios));
-
-		}
 	}
 
 	@Override
-	public void LecturaTareas() throws FileNotFoundException {
-		file = new File("tareas.txt");
-		t = new Scanner(file);
-
-		while (t.hasNextLine()) {
-			tareas.add(f.Crear_Tarea(t.nextLine().split("\\|"), usuarios, proyectos));
+	public void LecturaTareas(String[] info) {
+		tareas.add(f.Crear_Tarea(info, usuarios, proyectos));
+	}
+	
+	public void lectura() {
+		for(Usuario u: usuarios) {
+			System.out.println(u);
 		}
-
+		for(Proyectos p: proyectos) {
+			System.out.println(p);
+		}
+		for(Tarea t: tareas) {
+			System.out.println(t);
+		}
 	}
 
 	@Override

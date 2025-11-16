@@ -10,7 +10,6 @@ public class FactoryImpl implements Factory {
 	public static FactoryImpl InstanciarFactoryImpl() {
 		if (Instancia_Unica == null) {
 			Instancia_Unica = new FactoryImpl();
-			System.out.println(":3");
 		}
 
 		return Instancia_Unica;
@@ -33,6 +32,7 @@ public class FactoryImpl implements Factory {
 			}
 		}
 		Proyectos p = new Proyectos(Info[0], Info[1], usuario);
+		usuario.agregarProyecto(p);
 		return p;
 
 	}
@@ -55,6 +55,8 @@ public class FactoryImpl implements Factory {
 		}
 
 		Tarea t = new Tarea(proyecto, Info[1], Info[2], Info[3], Info[4], usuario, Info[6], Info[7]);
+		usuario.agregarTarea(t);
+		proyecto.agregarTarea(t);
 		return t;
 
 	}

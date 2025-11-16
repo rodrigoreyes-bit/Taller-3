@@ -23,6 +23,14 @@ public class Tarea {
 		Fecha = fecha;
 	}
 
+	@Override
+	public String toString() {
+		return "Tarea [Proyecto=" + Proyecto + ", ID=" + ID + ", Tipo=" + Tipo + ", Descripcion=" + Descripcion
+				+ ", Estado=" + Estado + "]";
+	}
+	
+	
+
 	
 
 }
