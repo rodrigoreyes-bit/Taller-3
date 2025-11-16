@@ -20,7 +20,7 @@ public class SistemaImpl implements Sistema {
 	public static SistemaImpl InstanciarSistemaImpl() {
 		if (Instancia_Unica == null) {
 			Instancia_Unica = new SistemaImpl();
-			System.out.println("");
+			System.out.println("owo");
 		}
 
 		return Instancia_Unica;

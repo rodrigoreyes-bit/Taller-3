@@ -10,7 +10,7 @@ public class FactoryImpl implements Factory {
 	public static FactoryImpl InstanciarFactoryImpl() {
 		if (Instancia_Unica == null) {
 			Instancia_Unica = new FactoryImpl();
-			System.out.println("");
+			System.out.println(":3");
 		}
 
 		return Instancia_Unica;

@@ -16,6 +16,7 @@ public class App {
 		sistema.LecturaUsuarios();
 		sistema.LecturaProyectos();
 		sistema.LecturaTareas();
+		System.out.println(":3");
 		
 		
 		
