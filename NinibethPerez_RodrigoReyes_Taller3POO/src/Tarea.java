@@ -22,15 +22,45 @@ public class Tarea {
 		Complejidad = complejidad;
 		Fecha = fecha;
 	}
+	
+	public Proyectos getProyecto() {
+		return Proyecto;
+	}
+
+	public String getID() {
+		return ID;
+	}
+
+	public String getTipo() {
+		return Tipo;
+	}
+
+	public String getDescripcion() {
+		return Descripcion;
+	}
+
+	public String getEstado() {
+		return Estado;
+	}
+
+	public Usuario getResponsable() {
+		return responsable;
+	}
+
+	public String getComplejidad() {
+		return Complejidad;
+	}
+
+	public String getFecha() {
+		return Fecha;
+	}
 
 	@Override
 	public String toString() {
-		return "Tarea [Proyecto=" + Proyecto + ", ID=" + ID + ", Tipo=" + Tipo + ", Descripcion=" + Descripcion
-				+ ", Estado=" + Estado + "]";
+		return ID + "  |  " + Tipo + "  |  " + Descripcion + "  |  " + Estado + "  |  " + responsable.getUsername() + "  |  " + Complejidad + "  |  " + Fecha;
 	}
 	
-	
-
-	
-
+	public String printInfoBasica() {
+		return "ID: " + ID + "  |  Tipo: " + Tipo + "  |  Descripción: " + Descripcion + "  |  Estado: " + Estado;
+	}
 }

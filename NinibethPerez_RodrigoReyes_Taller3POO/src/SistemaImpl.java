@@ -1,28 +1,26 @@
 import java.util.ArrayList;
 
 public class SistemaImpl implements Sistema {
-	
+
 	public FactoryImpl f = FactoryImpl.InstanciarFactoryImpl();
 	public ArrayList<Usuario> usuarios = new ArrayList<>();
 	public ArrayList<Proyectos> proyectos = new ArrayList<>();
 	public ArrayList<Tarea> tareas = new ArrayList<>();
-	
+
 	private static SistemaImpl Instancia_Unica;
 
-	private SistemaImpl() {}
+	private SistemaImpl() {
+	}
 
 	public static SistemaImpl InstanciarSistemaImpl() {
 		if (Instancia_Unica == null) {
 			Instancia_Unica = new SistemaImpl();
-			System.out.println("owo");
 		}
-
 		return Instancia_Unica;
-
 	}
 
 	@Override
-	public void LecturaUsuarios(String[] info) {	
+	public void LecturaUsuarios(String[] info) {
 		usuarios.add(f.Crear_Usuario(info));
 
 	}
@@ -37,47 +35,145 @@ public class SistemaImpl implements Sistema {
 	public void LecturaTareas(String[] info) {
 		tareas.add(f.Crear_Tarea(info, usuarios, proyectos));
 	}
-	
+
 	public void lectura() {
-		for(Usuario u: usuarios) {
+		for (Usuario u : usuarios) {
 			System.out.println(u);
 		}
-		for(Proyectos p: proyectos) {
+		for (Proyectos p : proyectos) {
 			System.out.println(p);
 		}
-		for(Tarea t: tareas) {
+		for (Tarea t : tareas) {
 			System.out.println(t);
 		}
 	}
 
 	@Override
 	public void VerListaProyectosTareas_Admin() {
-		// TODO Auto-generated method stub
+		System.out.println("=== PROYECTOS ===");
+
+		for (Proyectos p : proyectos) {
+			System.out.println(p);
+		}
+	}
+
+	@Override
+	public void AgregarProyecto_Admin(String id, String nombre, String resp) {
+		Usuario responsable = null;
+		for (Usuario u : usuarios) {
+			if (u.getUsername().equals(resp)) {
+				responsable = u;
+				break;
+			}
+		}
+
+		if (responsable == null) {
+			System.out.println("Usuario no encontrado");
+			return;
+		}
+		String[] info = { id, nombre, resp };
+		Proyectos p = f.Crear_Proyecto(info, usuarios);
+		proyectos.add(p);
+		responsable.agregarProyecto(p);
+
+		System.out.println("Proyecto agregado con éxito!!");
+	}
+
+	@Override
+	public void EliminarProyecto_Admin(String id) {
+		Proyectos proyecto = null;
+		for (Proyectos p : proyectos) {
+			if (p.getID().equals(id)) {
+				proyecto = p;
+				p.getResponsable().getProyectosResponsable().remove(p);
+				proyectos.remove(p);
+				break;
+			}
+		}
+
+		if (proyecto == null) {
+			System.out.println("Proyecto no encontrado.");
+			return;
+		}
+
+		System.out.println("Proyecto eliminado con éxito junto a sus tareas.");
 
 	}
 
 	@Override
-	public void AgregarProyecto_Admin() {
-		// TODO Auto-generated method stub
+	public void AgregarTarea_Admin(String proyectoId, String idTarea, String tipo, String descripcion, String estado, 
+			String userResponsable, String complejidad, String fecha) {
+
+		Proyectos proyecto = null;
+		for (Proyectos p : proyectos) {
+			if (p.getID().equals(proyectoId)) {
+				proyecto = p;
+				break;
+			}
+		}
+		
+		if (proyecto == null) {
+			System.out.println("ID de proyecto no encontrado.");
+			return;
+		}
+		
+		Usuario responsable = null;
+		for (Usuario u : usuarios) {
+			if (u.getUsername().equals(userResponsable)) {
+				responsable = u;
+				break;
+			}
+		}
+		
+		if (responsable == null) {
+			System.out.println("Responsable no encontrado.");
+			return;
+		}
+		
+		String[] info = {proyectoId, idTarea, tipo, descripcion, estado, userResponsable, complejidad, fecha};
+		Tarea t = f.Crear_Tarea(info, usuarios, proyectos);
+		tareas.add(t);
+		proyecto.agregarTarea(t);
+		responsable.agregarTarea(t);
+		
+		System.out.println("Tarea agregada con éxito!!");
 
 	}
 
 	@Override
-	public void AgregarTarea_Admin() {
-		// TODO Auto-generated method stub
+	public void EliminarTarea_Admin(String id) {
+		Tarea tarea = null;
+		for (Tarea t : tareas) {
+			if (t.getID().equals(id)) {
+				tarea = t;
+			}
+		}
+		
+		if (tarea == null) {
+			System.out.println("La tarea no existe.");
+			return;
+		}
+
+	    tarea.getProyecto().getTareas().remove(tarea);
+	    tarea.getResponsable().getTareasResponsable().remove(tarea);
+	    tareas.remove(tarea);
+
+	    System.out.println("Tarea eliminada con éxito!");
 
 	}
 
 	@Override
-	public void EliminarTarea_Admin(Tarea tarea) {
-		// TODO Auto-generated method stub
+	public void MostrarListaDeProyectosBasica() {
+		for (Proyectos p : proyectos) {
+			System.out.println(p.informacionBasica());
+		}
 
 	}
-
-	@Override
-	public void MostrarListaDeProyectos_Usuario() {
-		// TODO Auto-generated method stub
-
+	
+	public void MostrarInfoTareas() {
+		for (Tarea t : tareas) {
+			System.out.println(t);
+		}
 	}
 
 	@Override
@@ -99,21 +195,14 @@ public class SistemaImpl implements Sistema {
 	}
 
 	@Override
-	public void EliminarProyecto_Admin(Proyectos proyecto) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void AsignarPrioridades_Strategy_Admin(Proyectos proyecto) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void GenerarReporte_Admin(Proyectos proyecto) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 }

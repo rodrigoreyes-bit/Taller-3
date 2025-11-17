@@ -18,41 +18,22 @@ public class Usuario {
 		return Username;
 	}
 
-	public void setUsername(String username) {
-		Username = username;
-	}
-
 	public String getPassword() {
 		return Password;
-	}
-
-	public void setPassword(String password) {
-		Password = password;
 	}
 
 	public String getRol() {
 		return Rol;
 	}
 
-	public void setRol(String rol) {
-		Rol = rol;
-	}
-
 	public ArrayList<Tarea> getTareasResponsable() {
 		return TareasResponsable;
-	}
-
-	public void setTareasResponsable(ArrayList<Tarea> tareasResponsable) {
-		TareasResponsable = tareasResponsable;
 	}
 
 	public ArrayList<Proyectos> getProyectosResponsable() {
 		return ProyectosResponsable;
 	}
-
-	public void setProyectosResponsable(ArrayList<Proyectos> proyectosResponsable) {
-		ProyectosResponsable = proyectosResponsable;
-	}
+	
 	public void agregarProyecto(Proyectos p) {
 		this.ProyectosResponsable.add(p);
 	}
@@ -63,8 +44,4 @@ public class Usuario {
 	public String toString() {
 		return "Usuario [Username=" + Username + ", Password=" + Password + "]";
 	}
-	
-	
-	
-
 }

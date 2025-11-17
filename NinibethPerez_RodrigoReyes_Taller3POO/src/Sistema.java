@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 
 public interface Sistema {
 	
@@ -7,20 +6,16 @@ public interface Sistema {
 	public void LecturaTareas(String[] info);
 	
 	public void VerListaProyectosTareas_Admin();
-	public void AgregarProyecto_Admin();
-	public void EliminarProyecto_Admin(Proyectos proyecto);
-	public void AgregarTarea_Admin();
-	public void EliminarTarea_Admin(Tarea tarea);
+	public void AgregarProyecto_Admin(String id, String nombre, String responsable);
+	public void EliminarProyecto_Admin(String id);
+	public void AgregarTarea_Admin(String proyectoId, String idTarea, String tipo, String descripcion, String estado, 
+			String userResponsable, String complejidad, String fecha);
+	public void EliminarTarea_Admin(String id);
 	public void AsignarPrioridades_Strategy_Admin(Proyectos proyecto);
 	public void GenerarReporte_Admin(Proyectos proyecto);
 	
-	public void MostrarListaDeProyectos_Usuario();
+	public void MostrarListaDeProyectosBasica();
 	public void VerTareasAsignadas_Usuario(Usuario usuario);
 	public void ActualizarEstadoTarea_Usuario();
-	public void AplicarVisitor_Usuario(); //https://www.youtube.com/watch?v=kyquNfJ-rME
-	
-
-	
-	
-
+	public void AplicarVisitor_Usuario(); 
 }

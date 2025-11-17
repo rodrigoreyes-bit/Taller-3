@@ -43,7 +43,7 @@ public class FactoryImpl implements Factory {
 		Usuario usuario = null;
 		for (Proyectos p : proyectos) {
 
-			if (p.getID().equals(Info[1])) {
+			if (p.getID().equals(Info[0])) {
 				proyecto = p;
 			}
 		}
@@ -60,5 +60,4 @@ public class FactoryImpl implements Factory {
 		return t;
 
 	}
-
 }

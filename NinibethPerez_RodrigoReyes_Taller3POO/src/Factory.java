@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public interface Factory {
-	//https://www.youtube.com/watch?v=lLvYAzXO7Ek
 
 	public Usuario Crear_Usuario(String[] Info);
 
