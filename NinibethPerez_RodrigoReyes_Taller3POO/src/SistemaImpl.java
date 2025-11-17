@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -36,18 +38,6 @@ public class SistemaImpl implements Sistema {
 	@Override
 	public void LecturaTareas(String[] info) {
 		tareas.add(f.Crear_Tarea(info, usuarios, proyectos));
-	}
-
-	public void lectura() {
-		for (Usuario u : usuarios) {
-			System.out.println(u);
-		}
-		for (Proyectos p : proyectos) {
-			System.out.println(p);
-		}
-		for (Tarea t : tareas) {
-			System.out.println(t);
-		}
 	}
 
 	@Override
@@ -103,7 +93,7 @@ public class SistemaImpl implements Sistema {
 	}
 
 	@Override
-	public void AgregarTarea_Admin(String proyectoId, String idTarea, String tipo, String descripcion, String estado, 
+	public void AgregarTarea_Admin(String proyectoId, String idTarea, String tipo, String descripcion, String estado,
 			String userResponsable, String complejidad, String fecha) {
 
 		Proyectos proyecto = null;
@@ -113,12 +103,12 @@ public class SistemaImpl implements Sistema {
 				break;
 			}
 		}
-		
+
 		if (proyecto == null) {
 			System.out.println("ID de proyecto no encontrado.");
 			return;
 		}
-		
+
 		Usuario responsable = null;
 		for (Usuario u : usuarios) {
 			if (u.getUsername().equals(userResponsable)) {
@@ -126,18 +116,18 @@ public class SistemaImpl implements Sistema {
 				break;
 			}
 		}
-		
+
 		if (responsable == null) {
 			System.out.println("Responsable no encontrado.");
 			return;
 		}
-		
-		String[] info = {proyectoId, idTarea, tipo, descripcion, estado, userResponsable, complejidad, fecha};
+
+		String[] info = { proyectoId, idTarea, tipo, descripcion, estado, userResponsable, complejidad, fecha };
 		Tarea t = f.Crear_Tarea(info, usuarios, proyectos);
 		tareas.add(t);
 		proyecto.agregarTarea(t);
 		responsable.agregarTarea(t);
-		
+
 		System.out.println("Tarea agregada con éxito!!");
 
 	}
@@ -150,17 +140,17 @@ public class SistemaImpl implements Sistema {
 				tarea = t;
 			}
 		}
-		
+
 		if (tarea == null) {
 			System.out.println("La tarea no existe.");
 			return;
 		}
 
-	    tarea.getProyecto().getTareas().remove(tarea);
-	    tarea.getResponsable().getTareasResponsable().remove(tarea);
-	    tareas.remove(tarea);
+		tarea.getProyecto().getTareas().remove(tarea);
+		tarea.getResponsable().getTareasResponsable().remove(tarea);
+		tareas.remove(tarea);
 
-	    System.out.println("Tarea eliminada con éxito!");
+		System.out.println("Tarea eliminada con éxito!");
 
 	}
 
@@ -171,7 +161,7 @@ public class SistemaImpl implements Sistema {
 		}
 
 	}
-	
+
 	public void MostrarInfoTareas() {
 		for (Tarea t : tareas) {
 			System.out.println(t);
@@ -198,48 +188,55 @@ public class SistemaImpl implements Sistema {
 
 	@Override
 	public String AsignarPrioridades_Strategy_Admin(int opcion) {
-		switch(opcion) {
-		
+		switch (opcion) {
+
 		case 1:
-			if(!(estrategia instanceof Estrategia_PorFecha)) {
+			if (!(estrategia instanceof Estrategia_PorFecha)) {
 				Estrategia estrategia_Nueva = new Estrategia_PorFecha();
 				this.estrategia = estrategia_Nueva;
 				return "Estrategia cambiada a por Fecha";
 			}
 			break;
 		case 2:
-			if(!(estrategia instanceof Estrategia_PorImpacto)) {
+			if (!(estrategia instanceof Estrategia_PorImpacto)) {
 				Estrategia estrategia_Nueva = new Estrategia_PorImpacto();
 				this.estrategia = estrategia_Nueva;
 				return "Estrategia cambiada a por Impacto";
 			}
 			break;
 		case 3:
-			if(!(estrategia instanceof Estrategia_PorComplejidad)) {
+			if (!(estrategia instanceof Estrategia_PorComplejidad)) {
 				Estrategia estrategia_Nueva = new Estrategia_PorComplejidad();
 				this.estrategia = estrategia_Nueva;
 				return "Estrategia cambiada a por Complejidad";
 			}
 			break;
-			
+
 		}
 		return "Estrategia sobrescrita con exito";
-		
+
 	}
 
 	public String getEstrategia() {
-
 		return estrategia.Tipo();
-		
-
 	}
 
 	@Override
 	public void GenerarReporte_Admin() {
-		for(Proyectos p: proyectos) {
-			p.setTareas(estrategia.asignarPrioridad(p.getTareas()));
-			System.out.println(p);
-		}
+		try {
+			FileWriter escribir = new FileWriter("reportes.txt", true);
 
+			for (Proyectos p : proyectos) {
+				escribir.write("------------------------------------------\n");
+				estrategia.asignarPrioridad(p.getTareas());
+				escribir.write(p.toString());
+			}
+
+			escribir.close();
+			System.out.println("Reporte creado con éxito en el archivo reportes.txt.");
+		} catch (IOException e) {
+			e.printStackTrace();
+
+		}
 	}
 }
