@@ -197,10 +197,14 @@ public class SistemaImpl implements Sistema {
 
 	@Override
 	public void AsignarPrioridades_Strategy_Admin(Proyectos proyecto) {
-		System.out.println("*Cambio de estrategia en tiempo real*\r\n"
-				+ "\r\n"
-				+ "");
-		System.out.println("Su estrategia de trabajado actual es de tipo: " + estrategia.Tipo());
+		
+	}
+
+	public String getEstrategia() {
+
+		return estrategia.Tipo();
+		
+
 	}
 
 	@Override

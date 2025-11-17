@@ -6,7 +6,30 @@ public class Estrategia_PorImpacto implements Estrategia {
 	}
 
 	public ArrayList<Tarea> asignarPrioridad(ArrayList<Tarea> tareas) {
-		return tareas;
+		ArrayList<Tarea> Alta = new ArrayList<>();
+		ArrayList<Tarea> Media = new ArrayList<>();
+		ArrayList<Tarea> Baja = new ArrayList<>();
+		for (Tarea t : tareas) {
+
+			switch (t.getComplejidad()) {
+
+			case "Alta":
+				Alta.add(t);
+				break;
+			case "Media":
+				Media.add(t);
+				break;
+			case "Baja":
+				Baja.add(t);
+				break;
+
+			}
+		}
+		Alta.addAll(Media);
+		Media.addAll(Baja);
+
+		return Alta;
+
 		
 	}
 	public String Tipo() {
