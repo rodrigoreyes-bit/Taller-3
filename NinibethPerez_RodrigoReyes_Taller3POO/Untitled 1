@@ -5,7 +5,7 @@
 
 1) Por fecha de creación → Las tareas se ordenan según la fecha en que fueron
 creadas (más antiguas primero).
-
+ 
 2) Por impacto → Las tareas se ordenan según la criticidad del tipo de tarea:
 ▪ Bug → Alta prioridad.
 ▪ Feature → Media prioridad.

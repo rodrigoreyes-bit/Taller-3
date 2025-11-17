@@ -11,7 +11,7 @@ public interface Sistema {
 	public void AgregarTarea_Admin(String proyectoId, String idTarea, String tipo, String descripcion, String estado, 
 			String userResponsable, String complejidad, String fecha);
 	public void EliminarTarea_Admin(String id);
-	public void AsignarPrioridades_Strategy_Admin(Proyectos proyecto);
+	public String AsignarPrioridades_Strategy_Admin(int opcion);
 	public void GenerarReporte_Admin();
 	
 	public void MostrarListaDeProyectosBasica();

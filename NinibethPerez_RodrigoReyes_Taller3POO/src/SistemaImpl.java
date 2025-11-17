@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+
 public class SistemaImpl implements Sistema {
 
 	public FactoryImpl f = FactoryImpl.InstanciarFactoryImpl();
@@ -196,7 +197,33 @@ public class SistemaImpl implements Sistema {
 	}
 
 	@Override
-	public void AsignarPrioridades_Strategy_Admin(Proyectos proyecto) {
+	public String AsignarPrioridades_Strategy_Admin(int opcion) {
+		switch(opcion) {
+		
+		case 1:
+			if(!(estrategia instanceof Estrategia_PorFecha)) {
+				Estrategia estrategia_Nueva = new Estrategia_PorFecha();
+				this.estrategia = estrategia_Nueva;
+				return "Estrategia cambiada a por Fecha";
+			}
+			break;
+		case 2:
+			if(!(estrategia instanceof Estrategia_PorImpacto)) {
+				Estrategia estrategia_Nueva = new Estrategia_PorImpacto();
+				this.estrategia = estrategia_Nueva;
+				return "Estrategia cambiada a por Impacto";
+			}
+			break;
+		case 3:
+			if(!(estrategia instanceof Estrategia_PorComplejidad)) {
+				Estrategia estrategia_Nueva = new Estrategia_PorComplejidad();
+				this.estrategia = estrategia_Nueva;
+				return "Estrategia cambiada a por Complejidad";
+			}
+			break;
+			
+		}
+		return "Estrategia sobrescrita con exito";
 		
 	}
 

@@ -151,8 +151,7 @@ public class App {
                 
                 case 4:
                 	System.out.println("*Cambio de estrategia en tiempo real*\r\n"
-            				+ "\r\n"
-            				+ "");
+                			+ "");
             		System.out.println("Su estrategia de trabajado actual es de tipo: " + sistema.getEstrategia());
             		System.out.println("1) Por fecha de creación → Las tareas se ordenan según la fecha en que fueron\r\n"
             				+ "creadas (más antiguas primero).\r\n"
@@ -168,8 +167,8 @@ public class App {
             				+ "Por favor seleccione el indice de la estrategia de trabajo de desea adoptar (Si se encuentra conforme con su estrategia re introdúzcala dentro de este apartado). \r\n"
             				+ "\r\n"
             				+ "> ");
-            		int estrategia = Integer.valueOf(t.nextLine());
-            		
+            		int estrategia = Integer.valueOf(s.nextLine());
+            		System.out.println(sistema.AsignarPrioridades_Strategy_Admin(estrategia));
             		
                 	break;
                 	
