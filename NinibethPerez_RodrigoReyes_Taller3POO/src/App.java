@@ -150,12 +150,12 @@ public class App {
                 	break;
                 
                 case 4:
-                	//asignar prioridad 
                 	break;
                 	
                 case 5:
-                	//generar reporte
+                	sistema.GenerarReporte_Admin();
                 	break;
+                	
                 	
                 case 6: 
                 	System.out.println("Sesión cerrada...");

@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 
 public class Estrategia_PorFecha implements Estrategia {
+	public Estrategia_PorFecha() {
+	}
 
 	@Override
 	public ArrayList<Tarea> asignarPrioridad(ArrayList<Tarea> tareas) {
@@ -22,18 +24,21 @@ public class Estrategia_PorFecha implements Estrategia {
 	private static boolean Mayor(String f1, String f2) {
 		String[] p1 = f1.split("-");
 		String[] p2 = f2.split("-");
-		int año1 = Integer.valueOf(p1[0]);
-		int mes1 = Integer.valueOf(p1[1]);
-		int dia1 = Integer.valueOf(p1[2]);
-		int año2 = Integer.valueOf(p2[0]);
-		int mes2 = Integer.valueOf(p2[1]);
-		int dia2 = Integer.valueOf(p2[2]);
-		if (año1 > año2) return true;
-		if (año1 < año2) return false;
-		if (mes1 > mes2)return true;
-		if (mes1 < mes2)return false;
+	
+		if (Integer.valueOf(p1[0]) > Integer.valueOf(p2[0]))
+			return true;
+		if (Integer.valueOf(p1[0]) < Integer.valueOf(p2[0]))
+			return false;
+		if (Integer.valueOf(p1[1]) > Integer.valueOf(p2[1]))
+			return true;
+		if (Integer.valueOf(p1[1]) < Integer.valueOf(p2[1]))
+			return false;
 
-		return dia1 > dia2;
+		return Integer.valueOf(p1[2]) > Integer.valueOf(p2[2]);
 	}
 	
+	public String Tipo() {
+		return "Basada en fechas";
+	}
+
 }

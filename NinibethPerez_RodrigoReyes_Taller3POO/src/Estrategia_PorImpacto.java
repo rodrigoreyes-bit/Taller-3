@@ -2,14 +2,15 @@ import java.util.ArrayList;
 
 public class Estrategia_PorImpacto implements Estrategia {
 
-	@Override
-	public ArrayList<Tarea> asignarPrioridad(ArrayList<Tarea> proyectos) {
-		// TODO Auto-generated method stub
-		return null;
+	public Estrategia_PorImpacto() {
 	}
 
-	
-
-	
+	public ArrayList<Tarea> asignarPrioridad(ArrayList<Tarea> tareas) {
+		return tareas;
+		
+	}
+	public String Tipo() {
+		return "Basada en impacto";
+	}
 
 }

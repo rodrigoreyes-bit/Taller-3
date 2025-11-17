@@ -6,6 +6,7 @@ public class SistemaImpl implements Sistema {
 	public ArrayList<Usuario> usuarios = new ArrayList<>();
 	public ArrayList<Proyectos> proyectos = new ArrayList<>();
 	public ArrayList<Tarea> tareas = new ArrayList<>();
+	public Estrategia estrategia = new Estrategia_PorComplejidad();
 
 	private static SistemaImpl Instancia_Unica;
 
@@ -196,13 +197,18 @@ public class SistemaImpl implements Sistema {
 
 	@Override
 	public void AsignarPrioridades_Strategy_Admin(Proyectos proyecto) {
-		// TODO Auto-generated method stub
-
+		System.out.println("*Cambio de estrategia en tiempo real*\r\n"
+				+ "\r\n"
+				+ "");
+		System.out.println("Su estrategia de trabajado actual es de tipo: " + estrategia.Tipo());
 	}
 
 	@Override
-	public void GenerarReporte_Admin(Proyectos proyecto) {
-		// TODO Auto-generated method stub
+	public void GenerarReporte_Admin() {
+		for(Proyectos p: proyectos) {
+			p.setTareas(estrategia.asignarPrioridad(p.getTareas()));
+			System.out.println(p);
+		}
 
 	}
 }

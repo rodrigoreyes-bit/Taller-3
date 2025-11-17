@@ -12,7 +12,7 @@ public interface Sistema {
 			String userResponsable, String complejidad, String fecha);
 	public void EliminarTarea_Admin(String id);
 	public void AsignarPrioridades_Strategy_Admin(Proyectos proyecto);
-	public void GenerarReporte_Admin(Proyectos proyecto);
+	public void GenerarReporte_Admin();
 	
 	public void MostrarListaDeProyectosBasica();
 	public void VerTareasAsignadas_Usuario(Usuario usuario);

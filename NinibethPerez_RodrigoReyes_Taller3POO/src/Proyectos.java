@@ -32,6 +32,10 @@ public class Proyectos {
 	}
 
 
+	public void setTareas(ArrayList<Tarea> tareas) {
+		Tareas = tareas;
+	}
+
 	public void agregarTarea(Tarea t) {
 		this.Tareas.add(t);
 	}
