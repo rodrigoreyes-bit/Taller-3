@@ -20,15 +20,39 @@ public class App {
 		LecturaUsuarios();
 		LecturaProyectos();
 		LecturaTareas();
+		Login();
+	}
+
+	private static void Login() {
+
+		Usuario Usuario_Logeado = null;
+		do {
+			System.out.println("Ingrese su nombre de usuario.\r\n" + ">");
+			String usuario = t.nextLine();
+			System.out.println("Ingrese su contraseña.\r\n" + ">");
+			String contraseña = t.nextLine();
+
+			Usuario_Logeado = sistema.CheckDeInformacion(usuario, contraseña);
+		} while (Usuario_Logeado == null);
 		
-		menuAdmin();
-		
+
+		switch (Usuario_Logeado.getRol().toLowerCase()) {
+		case "administrador":
+			menuAdmin();
+			break;
+		case "colaborador":
+			menuUsuario();
+			break;
+
+		}
+
+
 	}
 
 	private static void LecturaTareas() throws FileNotFoundException {
 		file = new File("tareas.txt");
 		t = new Scanner(file);
-		
+
 		while (t.hasNextLine()) {
 			sistema.LecturaTareas(t.nextLine().split("\\|"));
 		}
@@ -37,7 +61,7 @@ public class App {
 	private static void LecturaProyectos() throws FileNotFoundException {
 		file = new File("proyectos.txt");
 		t = new Scanner(file);
-		
+
 		while (t.hasNextLine()) {
 			sistema.LecturaProyectos(t.nextLine().split("\\|"));
 		}
@@ -119,22 +143,22 @@ public class App {
             		    //Check de existencia
             		    System.out.print("Ingrese el ID de la tarea: ");
             		    String ID = s.nextLine();
-            		    
+            		    //Check
             		    System.out.print("Ingrese el tipo (Bug | Feature | Documentacion): ");
             		    String tipo = s.nextLine();
             		    
             		    System.out.print("Ingrese la descripción: ");
             		    String desc = s.nextLine();
-            		    
+            		    //Check
             		    System.out.print("Ingrese el estado (Pendiente | En Proceso | Completada): ");
             		    String estado = s.nextLine();
             		    
             		    System.out.print("Ingrese el username del responsable: ");
             		    String userResp = s.nextLine();
-            		    
+            		    //Check
             		    System.out.print("Ingrese la complejidad (Alta | Media | Baja): ");
             		    String complejidad = s.nextLine();
-            		    
+            		    //Check
             		    System.out.print("Ingrese la fecha ([Año-Mes-Dia]. Ejemplo: 2025-08-01): ");
             		    String fecha = s.nextLine();
             		    
@@ -180,8 +204,11 @@ public class App {
                 case 6: 
                 	System.out.println("Sesión cerrada...");
                 	System.out.println("Saliendo del menú admin...");
+                	Login();
+                	break;
+                case 7:
+                	System.out.println("Apagando el sistema...");
                 	return;
-                	
                 default: 
                 	System.out.println("Opción inválida.");
                 	break;
@@ -200,7 +227,8 @@ public class App {
 	            System.out.println("2. Ver tareas asignadas");
 	            System.out.println("3. Actualizar estado de una tarea");
 	            System.out.println("4. Checkeo de acciones requeridas sobre una tarea");
-	            System.out.println("5. Salir del sistema\n");
+	            System.out.println("5. Cerrar sesión\n");
+	            System.out.println("6. Deterner sistema\n");
 	            System.out.print("Seleccione una opción: ");
 	            opcion = Integer.valueOf(s.nextLine());
 
@@ -210,7 +238,7 @@ public class App {
 	                	break;
 	                	
 	                case 2:
-	                	//
+	                	
 	                	break;
 	                	
 	                case 3:
@@ -220,9 +248,13 @@ public class App {
 	                case 4:
 	                	//
 	                	break;
-	                
+	                	
 	                case 5:
 	                	System.out.println("Saliendo del menú usuario...");
+	                	Login();
+	                	break;
+	                case 6:
+	                	System.out.println("Apagando el sistema...");
 	                	return;
 	                	
 	                default:

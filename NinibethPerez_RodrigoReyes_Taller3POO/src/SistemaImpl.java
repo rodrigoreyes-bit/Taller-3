@@ -238,4 +238,19 @@ public class SistemaImpl implements Sistema {
 
 		}
 	}
+
+	public Usuario CheckDeInformacion(String usuario, String contraseña) {
+		
+		
+		for(Usuario u: usuarios) {
+			if(u.getUsername().equals(usuario)) {
+				if(u.getPassword().equals(contraseña)) {
+					System.out.println("Bienvenido de vuelta " + u.getUsername());
+					return u;
+				}
+			}
+		}
+		return null;
+		
+	}
 }
