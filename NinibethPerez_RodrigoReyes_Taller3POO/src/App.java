@@ -14,6 +14,7 @@ public class App {
 	public static Scanner t;
 	public static Scanner s = new Scanner(System.in);
 	public static SistemaImpl sistema = SistemaImpl.InstanciarSistemaImpl();
+	public static Usuario u;
 
 	public static void main(String[] args) throws FileNotFoundException {
 
@@ -28,15 +29,15 @@ public class App {
 		Usuario Usuario_Logeado = null;
 		do {
 			System.out.println("Ingrese su nombre de usuario.\r\n" + ">");
-			String usuario = t.nextLine();
+			String usuario = s.nextLine();
 			System.out.println("Ingrese su contraseña.\r\n" + ">");
-			String contraseña = t.nextLine();
+			String contraseña = s.nextLine();
 
 			Usuario_Logeado = sistema.CheckDeInformacion(usuario, contraseña);
 		} while (Usuario_Logeado == null);
 		
-
-		switch (Usuario_Logeado.getRol().toLowerCase()) {
+		u = Usuario_Logeado;
+		switch (u.getRol().toLowerCase()) {
 		case "administrador":
 			menuAdmin();
 			break;
@@ -88,7 +89,8 @@ public class App {
             System.out.println("3. Agregar o eliminar una tarea de un proyecto");
             System.out.println("4. Asignar prioridades");
             System.out.println("5. Generar reporte de proyectos");
-            System.out.println("6. Salir del sistema\n");
+            System.out.println("6. Cerrar sesión");
+            System.out.println("6. Detener sistema\n");
             System.out.print("Seleccione una opción: ");
             opcion = Integer.valueOf(s.nextLine());
 
@@ -227,8 +229,8 @@ public class App {
 	            System.out.println("2. Ver tareas asignadas");
 	            System.out.println("3. Actualizar estado de una tarea");
 	            System.out.println("4. Checkeo de acciones requeridas sobre una tarea");
-	            System.out.println("5. Cerrar sesión\n");
-	            System.out.println("6. Deterner sistema\n");
+	            System.out.println("5. Cerrar sesión");
+	            System.out.println("6. Detener sistema\n");
 	            System.out.print("Seleccione una opción: ");
 	            opcion = Integer.valueOf(s.nextLine());
 
@@ -238,11 +240,10 @@ public class App {
 	                	break;
 	                	
 	                case 2:
-	                	
+	                	sistema.VerTareasAsignadas_Usuario(u);
 	                	break;
 	                	
 	                case 3:
-	                	//
 	                	break;
 	                	
 	                case 4:

@@ -169,7 +169,11 @@ public class SistemaImpl implements Sistema {
 
 	@Override
 	public void VerTareasAsignadas_Usuario(Usuario usuario) {
-		// TODO Auto-generated method stub
+		for(Tarea t: tareas) {
+			if(t.getResponsable().equals(usuario)) {
+				System.out.println(t);
+			}
+		}
 
 	}
 
