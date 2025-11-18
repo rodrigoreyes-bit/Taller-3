@@ -124,9 +124,8 @@ public class SistemaImpl implements Sistema {
 
 		String[] info = { proyectoId, idTarea, tipo, descripcion, estado, userResponsable, complejidad, fecha };
 		Tarea t = f.Crear_Tarea(info, usuarios, proyectos);
-		tareas.add(t);
-		proyecto.agregarTarea(t);
-		responsable.agregarTarea(t);
+		System.out.println(t);
+		this.tareas.add(t);
 
 		System.out.println("Tarea agregada con éxito!!");
 

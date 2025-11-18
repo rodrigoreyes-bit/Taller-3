@@ -11,15 +11,15 @@ public class Estrategia_PorImpacto implements Estrategia {
 		ArrayList<Tarea> Baja = new ArrayList<>();
 		for (Tarea t : tareas) {
 
-			switch (t.getComplejidad()) {
+			switch (t.getComplejidad().toLowerCase()) {
 
-			case "Alta":
+			case "alta":
 				Alta.add(t);
 				break;
-			case "Media":
+			case "media":
 				Media.add(t);
 				break;
-			case "Baja":
+			case "baja":
 				Baja.add(t);
 				break;
 

@@ -113,29 +113,29 @@ public class App {
                 	if (eleccion == 1) {
                 		sistema.MostrarListaDeProyectosBasica();
                 		s = new Scanner(System.in);
-
+                		//Posible check
             		    System.out.print("\nIngrese el ID del proyecto al que desea agregar la tarea: ");
             		    String idProyecto = s.nextLine();
-
+            		    //Check de existencia
             		    System.out.print("Ingrese el ID de la tarea: ");
             		    String ID = s.nextLine();
             		    
-            		    System.out.print("Ingrese el tipo: ");
+            		    System.out.print("Ingrese el tipo (Bug | Feature | Documentacion): ");
             		    String tipo = s.nextLine();
             		    
             		    System.out.print("Ingrese la descripción: ");
             		    String desc = s.nextLine();
             		    
-            		    System.out.print("Ingrese el estado: ");
+            		    System.out.print("Ingrese el estado (Pendiente | En Proceso | Completada): ");
             		    String estado = s.nextLine();
             		    
             		    System.out.print("Ingrese el username del responsable: ");
             		    String userResp = s.nextLine();
             		    
-            		    System.out.print("Ingrese la complejidad: ");
+            		    System.out.print("Ingrese la complejidad (Alta | Media | Baja): ");
             		    String complejidad = s.nextLine();
             		    
-            		    System.out.print("Ingrese la fecha: ");
+            		    System.out.print("Ingrese la fecha ([Año-Mes-Dia]. Ejemplo: 2025-08-01): ");
             		    String fecha = s.nextLine();
             		    
             		    sistema.AgregarTarea_Admin(idProyecto, ID, tipo, desc, estado, userResp, complejidad, fecha);

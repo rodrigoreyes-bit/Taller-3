@@ -11,15 +11,15 @@ public class Estrategia_PorComplejidad implements Estrategia {
 		ArrayList<Tarea> Documentacion = new ArrayList<>();
 		for (Tarea t : tareas) {
 
-			switch (t.getTipo()) {
+			switch (t.getTipo().toLowerCase()) {
 
-			case "Bug":
+			case "bug":
 				Bug.add(t);
 				break;
-			case "Feature":
+			case "feature":
 				Feature.add(t);
 				break;
-			case "Documentacion":
+			case "documentacion":
 				Documentacion.add(t);
 				break;
 
