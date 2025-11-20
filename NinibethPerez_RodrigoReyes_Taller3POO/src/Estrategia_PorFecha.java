@@ -6,7 +6,6 @@ public class Estrategia_PorFecha implements Estrategia {
 
 	@Override
 	public ArrayList<Tarea> asignarPrioridad(ArrayList<Tarea> tareas) {
-
 		for (int i = 0; i < tareas.size() - 1; i++) {
 			for (int j = 0; j < tareas.size() - 1 - i; j++) {
 
@@ -17,7 +16,6 @@ public class Estrategia_PorFecha implements Estrategia {
 				}
 			}
 		}
-
 		return tareas;
 	}
 

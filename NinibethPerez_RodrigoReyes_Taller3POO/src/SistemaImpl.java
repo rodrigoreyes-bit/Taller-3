@@ -174,22 +174,18 @@ public class SistemaImpl implements Sistema {
 				System.out.println(t);
 			}
 		}
-
 	}
 
 	@Override
 	public String ActualizarEstadoTarea_Usuario(String id, int opcion) {
-		
 		Tarea tarea = null;
 		for(Tarea t: tareas) {
 			if(t.getID().contentEquals(id)) {
 				tarea = t;
-				
 			}
 		}
 		
 		switch(opcion) {
-		
 		case 1:
 			if(tarea.getEstado() != "Pendiente") {
 				tarea.setEstado("Pendiente");
@@ -274,13 +270,10 @@ public class SistemaImpl implements Sistema {
 			System.out.println("Reporte creado con éxito en el archivo reportes.txt.");
 		} catch (IOException e) {
 			e.printStackTrace();
-
 		}
 	}
 
 	public Usuario CheckDeInformacion(String usuario, String contraseña) {
-		
-		
 		for(Usuario u: usuarios) {
 			if(u.getUsername().equals(usuario)) {
 				if(u.getPassword().equals(contraseña)) {

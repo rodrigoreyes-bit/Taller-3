@@ -47,8 +47,6 @@ public class App {
 			break;
 
 		}
-
-
 	}
 
 	private static void LecturaTareas() throws FileNotFoundException {
