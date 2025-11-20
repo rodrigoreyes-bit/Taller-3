@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * Interfaz Estrategia. Define la interfaz común para las diferentes
+ * Define la interfaz común para las diferentes
  * estrategias de asignación de prioridad de tareas (Patrón Strategy).
  */
 public interface Estrategia {
@@ -17,5 +17,4 @@ public interface Estrategia {
      * @return Una cadena que describe el tipo de estrategia.
      */
 	public String Tipo();
-	
 }
