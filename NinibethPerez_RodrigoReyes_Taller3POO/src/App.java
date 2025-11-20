@@ -9,6 +9,12 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+/**
+ * Clase principal que contiene el punto de entrada de la aplicación
+ * y maneja la interacción del usuario a través de menús.
+ * Implementa el patrón Singleton para el acceso al sistema.
+ */
+
 public class App {
 	public static File file;
 	public static Scanner t;
@@ -17,6 +23,12 @@ public class App {
 	public static Usuario u;
 	public static Visitor v = new VisitorAcciones();
 
+	/**
+    * Punto de entrada principal de la aplicación.
+    * Carga los datos iniciales y luego inicia el proceso de Login.
+	* @param args Argumentos de la línea de comandos.
+     */
+
 	public static void main(String[] args) throws FileNotFoundException {
 
 		LecturaUsuarios();
@@ -24,7 +36,12 @@ public class App {
 		LecturaTareas();
 		Login();
 	}
-
+	
+	/**
+     * Maneja el proceso de inicio de sesión del usuario.
+     * Solicita nombre de usuario y contraseña hasta que el login sea exitoso o el usuario escriba 'exit'.
+     * Redirige al menú de Administrador o Usuario/Colaborador.
+     */
 	private static void Login() {
 
 		Usuario usuarioLog = null;
@@ -53,7 +70,12 @@ public class App {
 
 		}
 	}
-
+	
+	/**
+     * Lee las tareas desde el archivo "tareas.txt" y las carga en el sistema.
+     * Se espera que el archivo use '|' como separador de campos.
+     * @throws FileNotFoundException Si el archivo "tareas.txt" no se encuentra.
+     */
 	private static void LecturaTareas() throws FileNotFoundException {
 		file = new File("tareas.txt");
 		t = new Scanner(file);
@@ -61,7 +83,12 @@ public class App {
 			sistema.LecturaTareas(t.nextLine().split("\\|"));
 		}
 	}
-
+	
+	/**
+     * Lee los proyectos desde el archivo "proyectos.txt" y los carga en el sistema.
+     * Se espera que el archivo use '|' como separador de campos.
+     * @throws FileNotFoundException Si el archivo "proyectos.txt" no se encuentra.
+     */
 	private static void LecturaProyectos() throws FileNotFoundException {
 		file = new File("proyectos.txt");
 		t = new Scanner(file);
@@ -69,7 +96,12 @@ public class App {
 			sistema.LecturaProyectos(t.nextLine().split("\\|"));
 		}
 	}
-
+	
+	/**
+     * Lee los usuarios desde el archivo "usuarios.txt" y los carga en el sistema.
+     * Se espera que el archivo use '|' como separador de campos.
+     * @throws FileNotFoundException Si el archivo "usuarios.txt" no se encuentra.
+     */
 	private static void LecturaUsuarios() throws FileNotFoundException {
 		file = new File("usuarios.txt");
 		t = new Scanner(file);
@@ -78,7 +110,9 @@ public class App {
 		}
 	}
 	
-	//---------------------------------- MENU ADMIN -------------------------------------------
+	/**
+     * Muestra y maneja el menú de opciones para el usuario con rol de Administrador.
+     */
 	private static void menuAdmin(){
 		//En caso que el usuario ingresado tenga el rol Admin se abre este menú de opciones.
 		s = new Scanner(System.in);
@@ -194,58 +228,60 @@ public class App {
         } while (opcion != 0);
     }
 	
-	//---------------------------------- MENU USUARIO -------------------------------------------
-		private static void menuUsuario() {
-			//En caso que el usuario ingresado tenga el rol User se abre este menu de opciones.
-			s = new Scanner(System.in);
-	        int opcion = -1;
-	        do {
-	            System.out.println("\n--- MENÚ USUARIO ---");
-	            System.out.println("1. Ver proyectos disponibles");
-	            System.out.println("2. Ver tareas asignadas");
-	            System.out.println("3. Actualizar estado de una tarea");
-	            System.out.println("4. Checkeo de acciones requeridas sobre una tarea");
-	            System.out.println("5. Cerrar sesión");
-	            System.out.println("6. Detener sistema\n");
-	            System.out.print("Seleccione una opción: ");
-	            opcion = Integer.valueOf(s.nextLine());
+	/**
+     * Muestra y maneja el menú de opciones para el usuario con rol de Usuario.
+     */
+	private static void menuUsuario() {
+		//En caso que el usuario ingresado tenga el rol User se abre este menu de opciones.
+		s = new Scanner(System.in);
+        int opcion = -1;
+        do {
+            System.out.println("\n--- MENÚ USUARIO ---");
+            System.out.println("1. Ver proyectos disponibles");
+            System.out.println("2. Ver tareas asignadas");
+            System.out.println("3. Actualizar estado de una tarea");
+            System.out.println("4. Checkeo de acciones requeridas sobre una tarea");
+            System.out.println("5. Cerrar sesión");
+            System.out.println("6. Detener sistema\n");
+            System.out.print("Seleccione una opción: ");
+            opcion = Integer.valueOf(s.nextLine());
 
-	            switch (opcion) {
-	                case 1:
-	                	sistema.MostrarListaDeProyectosBasica();
-	                	break;
-	                	
-	                case 2:
-	                	sistema.VerTareasAsignadas_Usuario(u);
-	                	break;
-	                	
-	                case 3:
-	                	sistema.MostrarInfoTareas();
-	                	System.out.println("Ingrese el ID de la tarea que desea modificar: \n");
-	                	String opcionMenu = s.nextLine();
-	                	System.out.println("\nA que estado desea cambiar la tarea elegida?\n1) Pendiente\n2) En progreso\n3) Completada\n>");
-	                	int indice = Integer.valueOf(s.nextLine());
-	                	System.out.println(sistema.ActualizarEstadoTarea_Usuario(opcionMenu,indice));
-	                	break;
-	                	
-	                case 4:
-	                	sistema.AplicarVisitor_Usuario(v);
-	                	break;
-	                	
-	                case 5:
-	                	System.out.println("Saliendo del menú usuario...");
-	                	Login();
-	                	break;
-	                case 6:
-	                	System.out.println("Apagando el sistema...");
-	                	return;
-	                	
-	                default:
-	                	System.out.println("Opción inválida.");
-	                	break;
-	            }
-	            
-	        } while (opcion != 0);
-	    }
-	
+            switch (opcion) {
+                case 1:
+                	sistema.MostrarListaDeProyectosBasica();
+                	break;
+                	
+                case 2:
+                	sistema.VerTareasAsignadas_Usuario(u);
+                	break;
+                	
+                case 3:
+                	sistema.MostrarInfoTareas();
+                	System.out.println("Ingrese el ID de la tarea que desea modificar: \n");
+                	String opcionMenu = s.nextLine();
+                	System.out.println("\nA que estado desea cambiar la tarea elegida?\n1) Pendiente\n2) En progreso\n3) Completada\n>");
+                	int indice = Integer.valueOf(s.nextLine());
+                	System.out.println(sistema.ActualizarEstadoTarea_Usuario(opcionMenu,indice));
+                	break;
+                	
+                case 4:
+                	sistema.AplicarVisitor_Usuario(v);
+                	break;
+                	
+                case 5:
+                	System.out.println("Saliendo del menú usuario...");
+                	Login();
+                	break;
+                case 6:
+                	System.out.println("Apagando el sistema...");
+                	return;
+                	
+                default:
+                	System.out.println("Opción inválida.");
+                	break;
+            }
+            
+        } while (opcion != 0);
+    }
+
 }

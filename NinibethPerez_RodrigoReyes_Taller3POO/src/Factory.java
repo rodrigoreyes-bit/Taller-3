@@ -1,5 +1,19 @@
 import java.util.ArrayList;
-
+/**
+* Define los métodos de creación de usuarios, proyectos y tareas bajo el patrón Factory.
+*
+* PRE:
+* - Los arreglos de información contienen los valores necesarios en el orden correcto.
+* - Las listas de usuarios y proyectos contienen elementos válidos.
+*
+* POST:
+* - Retorna instancias de Usuario, Proyectos o Tarea completamente inicializadas.
+*
+* Métodos:
+* @param Info Arreglo con la información necesaria para construir el objeto.
+* @param usuarios Lista de usuarios disponibles.
+* @param proyectos Lista de proyectos disponibles.
+*/
 public class Factory {
 	private static Factory Instancia_Unica;
 
