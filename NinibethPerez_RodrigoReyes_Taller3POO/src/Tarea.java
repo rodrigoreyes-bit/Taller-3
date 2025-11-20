@@ -23,6 +23,10 @@ public class Tarea {
 		Fecha = fecha;
 	}
 	
+	public void accept(Visitor v) {
+		v.EvaluarTarea(this);
+	}
+	
 	public Proyectos getProyecto() {
 		return Proyecto;
 	}
@@ -85,9 +89,6 @@ public class Tarea {
 
 	public void setFecha(String fecha) {
 		Fecha = fecha;
-	}
-	public void accept(Visitor v) {
-		v.EvaluarTarea(this);
 	}
 	@Override
 	public String toString() {

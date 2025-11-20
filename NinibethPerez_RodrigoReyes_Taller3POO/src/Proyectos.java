@@ -18,7 +18,6 @@ public class Proyectos {
 		return ID;
 	}
 
-
 	public String getNombre() {
 		return Nombre;
 	}
@@ -30,7 +29,6 @@ public class Proyectos {
 	public ArrayList<Tarea> getTareas() {
 		return Tareas;
 	}
-
 
 	public void setTareas(ArrayList<Tarea> tareas) {
 		Tareas = tareas;

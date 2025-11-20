@@ -127,6 +127,12 @@ public class SistemaImpl implements Sistema {
 			return;
 		}
 		
+		String ti = tipo.toLowerCase();
+		if (!ti.equals("bug") && !ti.equals("feature") && !ti.equals("documentacion")) {
+			System.out.println("Ingrese un tipo válido.");
+			return;
+		}
+		
 		if (fecha.split("-").length != 3) {
 			System.out.println("Ingrese una fecha válida.");
 			return;
