@@ -4,32 +4,31 @@ public class Estrategia_PorComplejidad implements Estrategia {
 
 	public Estrategia_PorComplejidad() {
 	}
-
+	
 	public ArrayList<Tarea> asignarPrioridad(ArrayList<Tarea> tareas) {
-		ArrayList<Tarea> Bug = new ArrayList<>();
-		ArrayList<Tarea> Feature = new ArrayList<>();
-		ArrayList<Tarea> Documentacion = new ArrayList<>();
+		ArrayList<Tarea> alta = new ArrayList<>();
+		ArrayList<Tarea> media = new ArrayList<>();
+		ArrayList<Tarea> baja = new ArrayList<>();
 		for (Tarea t : tareas) {
-
 			switch (t.getComplejidad().toLowerCase()) {
-
-			case "bug":
-				Bug.add(t);
+			case "alta":
+				alta.add(t);
 				break;
-			case "feature":
-				Feature.add(t);
+				
+			case "media":
+				media.add(t);
 				break;
-			case "documentacion":
-				Documentacion.add(t);
+				
+			case "baja":
+				baja.add(t);
 				break;
-
 			}
 		}
-		Bug.addAll(Feature);
-		Bug.addAll(Documentacion);
-
-		return Bug;
+		alta.addAll(media);
+		alta.addAll(baja);
+		return alta;
 	}
+	
 	public String Tipo() {
 		return "Basada en complejidad";
 	}

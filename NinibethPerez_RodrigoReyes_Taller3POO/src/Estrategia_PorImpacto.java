@@ -4,34 +4,30 @@ public class Estrategia_PorImpacto implements Estrategia {
 
 	public Estrategia_PorImpacto() {
 	}
-
+	
 	public ArrayList<Tarea> asignarPrioridad(ArrayList<Tarea> tareas) {
-		ArrayList<Tarea> Alta = new ArrayList<>();
-		ArrayList<Tarea> Media = new ArrayList<>();
-		ArrayList<Tarea> Baja = new ArrayList<>();
+		ArrayList<Tarea> bug = new ArrayList<>();
+		ArrayList<Tarea> feature = new ArrayList<>();
+		ArrayList<Tarea> documentacion = new ArrayList<>();
 		for (Tarea t : tareas) {
-
-			switch (t.getComplejidad().toLowerCase()) {
-
+			switch (t.getTipo().toLowerCase()) {
 			case "alta":
-				Alta.add(t);
+				bug.add(t);
 				break;
-			case "media":
-				Media.add(t);
+			case "feature":
+				feature.add(t);
 				break;
-			case "baja":
-				Baja.add(t);
+			case "documentacion":
+				documentacion.add(t);
 				break;
 
 			}
 		}
-		Alta.addAll(Media);
-		Media.addAll(Baja);
-
-		return Alta;
-
-		
+		bug.addAll(feature);
+		bug.addAll(documentacion);
+		return bug;
 	}
+	
 	public String Tipo() {
 		return "Basada en impacto";
 	}
