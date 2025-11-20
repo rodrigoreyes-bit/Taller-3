@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class SistemaImpl implements Sistema {
 
-	public FactoryImpl f = FactoryImpl.InstanciarFactoryImpl();
+	public Factory f = Factory.InstanciarFactory();
 	public ArrayList<Usuario> usuarios = new ArrayList<>();
 	public ArrayList<Proyectos> proyectos = new ArrayList<>();
 	public ArrayList<Tarea> tareas = new ArrayList<>();

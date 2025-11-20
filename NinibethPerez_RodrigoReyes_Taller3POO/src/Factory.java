@@ -1,7 +1,17 @@
 import java.util.ArrayList;
 
 public class Factory {
+	private static Factory Instancia_Unica;
 
+	private Factory() { }
+
+	public static Factory InstanciarFactory() {
+		if (Instancia_Unica == null) {
+			Instancia_Unica = new Factory();
+		}
+		return Instancia_Unica;
+	}
+	
 	public Usuario Crear_Usuario(String[] Info) {
 		Usuario u = new Usuario(Info[0], Info[1], Info[2]);
 		return u;
