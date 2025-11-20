@@ -1,6 +1,16 @@
-
+/**
+ * Implementación concreta de la interfaz Visitor que realiza acciones específicas
+ * en base al tipo de Tarea (Patrón Visitor).
+ */
 public class VisitorAcciones implements Visitor {
+	/*
+	 * Constructor por defecto
+	 */
 	public VisitorAcciones() {}
+	/**
+     * Evalúa la tarea e imprime un mensaje en función de su tipo.
+     * @param t La tarea a evaluar.
+     */
 	@Override
 	public void EvaluarTarea(Tarea t) {
 		switch(t.getTipo().toLowerCase()) {
@@ -18,7 +28,5 @@ public class VisitorAcciones implements Visitor {
 			break;
 			
 		}
-		
 	}
-
 }
