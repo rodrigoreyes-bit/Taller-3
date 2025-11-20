@@ -26,13 +26,11 @@ public class SistemaImpl implements Sistema {
 	@Override
 	public void LecturaUsuarios(String[] info) {
 		usuarios.add(f.Crear_Usuario(info));
-
 	}
 
 	@Override
 	public void LecturaProyectos(String[] info) {
 		proyectos.add(f.Crear_Proyecto(info, usuarios));
-
 	}
 
 	@Override
@@ -63,7 +61,7 @@ public class SistemaImpl implements Sistema {
 			System.out.println("Usuario no encontrado");
 			return;
 		}
-		String[] info = { id, nombre, resp };
+		String[] info = {id, nombre, resp};
 		Proyectos p = f.Crear_Proyecto(info, usuarios);
 		proyectos.add(p);
 		responsable.agregarProyecto(p);
@@ -88,7 +86,7 @@ public class SistemaImpl implements Sistema {
 			return;
 		}
 
-		System.out.println("Proyecto eliminado con éxito junto a sus tareas.");
+		System.out.println("Proyecto eliminado con éxito junto a sus tareas!");
 
 	}
 
@@ -198,27 +196,32 @@ public class SistemaImpl implements Sistema {
 		for(Tarea t: tareas) {
 			if(t.getID().contentEquals(id)) {
 				tarea = t;
+				break;
 			}
+		}
+		
+		if (tarea == null) {
+			return "Tarea no encontrada";
 		}
 		
 		switch(opcion) {
 		case 1:
-			if(tarea.getEstado() != "Pendiente") {
+			if(!tarea.getEstado().equals("Pendiente")) {
 				tarea.setEstado("Pendiente");
-				return "Estado de tarea cambiada a Pendiente";
+				return "Estado de tarea cambiada a 'Pendiente'";
 			}
 			break;
 		case 2:
-			if(tarea.getEstado() != "En progreso") {
+			if(!tarea.getEstado().equals("En progreso")) {
 				tarea.setEstado("En progreso");
-				return "Estado de tarea cambiada a En progreso";
+				return "Estado de tarea cambiada a 'En progreso'";
 			}
 			
 			break;
 		case 3:
-			if(tarea.getEstado() != "Completada") {
+			if(!tarea.getEstado().equals("Completada")) {
 				tarea.setEstado("Completada");
-				return "Estado de tarea cambiada a Completada";
+				return "Estado de tarea cambiada a 'Completada'";
 			}
 			break;
 		}
@@ -244,21 +247,21 @@ public class SistemaImpl implements Sistema {
 			if (!(estrategia instanceof Estrategia_PorFecha)) {
 				Estrategia estrategia_Nueva = new Estrategia_PorFecha();
 				this.estrategia = estrategia_Nueva;
-				return "Estrategia cambiada a por Fecha";
+				return "Estrategia cambiada a 'por Fecha'";
 			}
 			break;
 		case 2:
 			if (!(estrategia instanceof Estrategia_PorImpacto)) {
 				Estrategia estrategia_Nueva = new Estrategia_PorImpacto();
 				this.estrategia = estrategia_Nueva;
-				return "Estrategia cambiada a por Impacto";
+				return "Estrategia cambiada a 'por Impacto'";
 			}
 			break;
 		case 3:
 			if (!(estrategia instanceof Estrategia_PorComplejidad)) {
 				Estrategia estrategia_Nueva = new Estrategia_PorComplejidad();
 				this.estrategia = estrategia_Nueva;
-				return "Estrategia cambiada a por Complejidad";
+				return "Estrategia cambiada a 'por Complejidad'";
 			}
 			break;
 
@@ -279,7 +282,7 @@ public class SistemaImpl implements Sistema {
 			for (Proyectos p : proyectos) {
 				escribir.write("------------------------------------------\n");
 				estrategia.asignarPrioridad(p.getTareas());
-				escribir.write(p.toString());
+				escribir.write(p.toString() + "\n");
 			}
 
 			escribir.close();
@@ -299,6 +302,5 @@ public class SistemaImpl implements Sistema {
 			}
 		}
 		return null;
-		
 	}
 }
