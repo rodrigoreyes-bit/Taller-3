@@ -121,6 +121,16 @@ public class SistemaImpl implements Sistema {
 			System.out.println("Responsable no encontrado.");
 			return;
 		}
+		String c = complejidad.toLowerCase();
+		if (!c.equals("alta") && !c.equals("media") && !c.equals("baja")) {
+			System.out.println("Ingrese una complejidad válida.");
+			return;
+		}
+		
+		if (fecha.split("-").length != 3) {
+			System.out.println("Ingrese una fecha válida.");
+			return;
+		}
 
 		String[] info = { proyectoId, idTarea, tipo, descripcion, estado, userResponsable, complejidad, fecha };
 		Tarea t = f.Crear_Tarea(info, usuarios, proyectos);

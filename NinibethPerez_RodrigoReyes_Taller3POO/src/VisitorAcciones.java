@@ -14,7 +14,7 @@ public class VisitorAcciones implements Visitor {
 			break;
 
 		case "Documentacion":
-			System.out.println("La tarea " + t.getID() + " mejora la calidad total del proyecto");
+			System.out.println("La tarea " + t.getID() + " mejora la calidad total del proyecto!");
 			break;
 			
 		}
