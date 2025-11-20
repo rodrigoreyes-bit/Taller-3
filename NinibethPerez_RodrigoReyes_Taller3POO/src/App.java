@@ -15,6 +15,7 @@ public class App {
 	public static Scanner s = new Scanner(System.in);
 	public static SistemaImpl sistema = SistemaImpl.InstanciarSistemaImpl();
 	public static Usuario u;
+	public static Visitor v = new VisitorAcciones();
 
 	public static void main(String[] args) throws FileNotFoundException {
 
@@ -244,10 +245,25 @@ public class App {
 	                	break;
 	                	
 	                case 3:
+	                	sistema.MostrarInfoTareas();
+	                	System.out.println("Ingrese el ID de la tarea que desea modificar: ");
+	                	String opcionMenu = s.nextLine();
+	                	System.out.println("\r\n"
+	                			+ "A que estado desea cambiar la tarea elegida?\r\n"
+	                			+ "\r\n"
+	                			+ "1) Pendiente\r\n"
+	                			+ "\r\n"
+	                			+ "2) En progreso\r\n"
+	                			+ "\r\n"
+	                			+ "3) Completada\r\n"
+	                			+ "\r\n"
+	                			+ ">");
+	                	int indice = Integer.valueOf(s.nextLine());
+	                	sistema.ActualizarEstadoTarea_Usuario(opcionMenu,indice);
 	                	break;
 	                	
 	                case 4:
-	                	//
+	                	sistema.AplicarVisitor_Usuario(v);
 	                	break;
 	                	
 	                case 5:

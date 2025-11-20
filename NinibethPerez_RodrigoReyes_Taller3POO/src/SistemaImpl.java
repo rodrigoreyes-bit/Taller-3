@@ -178,15 +178,50 @@ public class SistemaImpl implements Sistema {
 	}
 
 	@Override
-	public void ActualizarEstadoTarea_Usuario() {
-		// TODO Auto-generated method stub
+	public String ActualizarEstadoTarea_Usuario(String id, int opcion) {
+		
+		Tarea tarea = null;
+		for(Tarea t: tareas) {
+			if(t.getID().contentEquals(id)) {
+				tarea = t;
+				
+			}
+		}
+		
+		switch(opcion) {
+		
+		case 1:
+			if(tarea.getEstado() != "Pendiente") {
+				tarea.setEstado("Pendiente");
+				return "Estado de tarea cambiada a Pendiente";
+			}
+			break;
+		case 2:
+			if(tarea.getEstado() != "En progreso") {
+				tarea.setEstado("En progreso");
+				return "Estado de tarea cambiada a En progreso";
+			}
+			
+			break;
+		case 3:
+			if(tarea.getEstado() != "Completada") {
+				tarea.setEstado("Completada");
+				return "Estado de tarea cambiada a Completada";
+			}
+			break;
+		}
+		return "Error | Estado sobrescrito, intente cambiar a un estado de progreso distinto";
 
 	}
 
 	@Override
-	public void AplicarVisitor_Usuario() {
-		// TODO Auto-generated method stub
-
+	public void AplicarVisitor_Usuario(Visitor v) {
+		for(Proyectos p: proyectos) {
+			System.out.println(p.getID() + ":");
+			for(Tarea t: tareas) {
+				t.accept(v);
+			}
+		}
 	}
 
 	@Override
@@ -216,7 +251,7 @@ public class SistemaImpl implements Sistema {
 			break;
 
 		}
-		return "Estrategia sobrescrita con exito";
+		return "Error | Estrategia sobrescrita, intente cambiar a una estrategia distinta a la que posee";
 
 	}
 

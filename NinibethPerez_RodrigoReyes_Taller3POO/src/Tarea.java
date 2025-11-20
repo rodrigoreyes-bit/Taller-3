@@ -54,7 +54,41 @@ public class Tarea {
 	public String getFecha() {
 		return Fecha;
 	}
+	
+	public void setProyecto(Proyectos proyecto) {
+		Proyecto = proyecto;
+	}
 
+	public void setID(String iD) {
+		ID = iD;
+	}
+
+	public void setTipo(String tipo) {
+		Tipo = tipo;
+	}
+
+	public void setDescripcion(String descripcion) {
+		Descripcion = descripcion;
+	}
+
+	public void setEstado(String estado) {
+		Estado = estado;
+	}
+
+	public void setResponsable(Usuario responsable) {
+		this.responsable = responsable;
+	}
+
+	public void setComplejidad(String complejidad) {
+		Complejidad = complejidad;
+	}
+
+	public void setFecha(String fecha) {
+		Fecha = fecha;
+	}
+	public void accept(Visitor v) {
+		v.EvaluarTarea(this);
+	}
 	@Override
 	public String toString() {
 		return ID + "  |  " + Tipo + "  |  " + Descripcion + "  |  " + Estado + "  |  " + responsable.getUsername() + "  |  " + Complejidad + "  |  " + Fecha;
