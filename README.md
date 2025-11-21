@@ -2,14 +2,6 @@
 **I Semestre - 2035 | ITI - ICCI**
 
 ---
-
-## 🎞 Imagen representativa  
-*(Asegúrate de colocar el archivo en `/assets/treyo.gif`)*
-
-![Treyo GIF](assets/treyo.gif)
-
----
-
 ## 👨‍🏫 Docentes
 - Alejandro Paolini Godoy  
 - Cristhian Rabi Reyes  
@@ -95,17 +87,11 @@ Incluye dos roles principales:
 
 ---
 
-## 💾 Persistencia
-El sistema lee y escribe automáticamente en los archivos txt para garantizar consistencia entre sesiones.
-
----
-
 ## 🛠 Tecnologías y Patrones
 - Java 17+  
 - POO  
 - Singleton, Factory, Strategy, Visitor  
-- Persistencia con archivos  
-- Eclipse  
+- Proyecto hecho en eclipse  
 
 ---
 
