@@ -1,5 +1,5 @@
 # 📌 Taller N°3 - Programación Orientada a Objetos  
-**I Semestre - 2035 | ITI - ICCI**
+**II Semestre - 2025 | ITI - ICCI**
 
 ---
 ## 👨‍🏫 Docentes
@@ -13,8 +13,8 @@
 ---
 
 ## 👥 Integrantes
-- Ninibeth Pérez Cortés - 21.787.686-9 - ICCI - GitHub: papaFritaUwU  
-- *(Agregar integrante 2)* Nombre - RUT - Carrera - GitHub: usuario  
+- Ninibeth Pérez Cortés - 21.787.686-9 - ICCI - usuario GitHub: papaFritaUwU
+- Rodrigo Reyes Alfaro - 22.123.808-7 - ICCI - usuario GitHub: rodrigoreyes-bit
 
 ---
 
