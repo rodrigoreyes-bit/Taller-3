@@ -61,6 +61,13 @@ public class SistemaImpl implements Sistema {
 			System.out.println("Usuario no encontrado");
 			return;
 		}
+		
+		for(Proyectos p: proyectos) {
+			if(p.getID().equals(id)) {
+				System.out.println("Error | ID ya ocupado en otro proyecto.");
+				return;
+			}
+		}
 		String[] info = {id, nombre, resp};
 		Proyectos p = factory.Crear_Proyecto(info, usuarios);
 		proyectos.add(p);
@@ -84,6 +91,16 @@ public class SistemaImpl implements Sistema {
 		if (proyecto == null) {
 			System.out.println("Proyecto no encontrado.");
 			return;
+		}
+		ArrayList<Tarea> eliminar = new ArrayList<Tarea>();
+		for (Tarea t : tareas) {
+			if (t.getProyecto().getID().equals(proyecto.getID())) {
+				eliminar.add(t);
+
+			}
+		}
+		for (Tarea e : eliminar) {
+			tareas.remove(e);
 		}
 
 		System.out.println("Proyecto eliminado con éxito junto a sus tareas!");
@@ -134,6 +151,21 @@ public class SistemaImpl implements Sistema {
 		if (fecha.split("-").length != 3) {
 			System.out.println("Ingrese una fecha válida.");
 			return;
+		}
+		
+		for(Tarea t: responsable.getTareasResponsable()) {
+			if(t.getFecha().equals(fecha)) {
+				System.out.println("Ingrese una fecha disponible.");
+				return;
+			}
+		}
+		
+		for(Tarea t: tareas) {
+			if(t.getID().equals(idTarea)) {
+				System.out.println("Error | ID duplicado.");
+				return;
+				
+			}
 		}
 
 		String[] info = { proyectoId, idTarea, tipo, descripcion, estado, userResponsable, complejidad, fecha };
@@ -194,7 +226,7 @@ public class SistemaImpl implements Sistema {
 	public String ActualizarEstadoTarea_Usuario(String id, int opcion) {
 		Tarea tarea = null;
 		for(Tarea t: tareas) {
-			if(t.getID().contentEquals(id)) {
+			if(t.getID().equals(id)) {
 				tarea = t;
 				break;
 			}
@@ -208,20 +240,20 @@ public class SistemaImpl implements Sistema {
 		case 1:
 			if(!tarea.getEstado().equals("Pendiente")) {
 				tarea.setEstado("Pendiente");
-				return "Estado de tarea cambiada a 'Pendiente'";
+				return "Estado de tarea cambiado a 'Pendiente'.";
 			}
 			break;
 		case 2:
 			if(!tarea.getEstado().equals("En progreso")) {
 				tarea.setEstado("En progreso");
-				return "Estado de tarea cambiada a 'En progreso'";
+				return "Estado de tarea cambiado a 'En progreso'.";
 			}
 			
 			break;
 		case 3:
 			if(!tarea.getEstado().equals("Completada")) {
 				tarea.setEstado("Completada");
-				return "Estado de tarea cambiada a 'Completada'";
+				return "Estado de tarea cambiado a 'Completada'.";
 			}
 			break;
 		}
@@ -233,7 +265,7 @@ public class SistemaImpl implements Sistema {
 	public void AplicarVisitor_Usuario(Visitor v) {
 		for(Proyectos p: proyectos) {
 			System.out.println(p.getID() + ":");
-			for(Tarea t: tareas) {
+			for(Tarea t: p.getTareas()) {
 				t.accept(v);
 			}
 		}
