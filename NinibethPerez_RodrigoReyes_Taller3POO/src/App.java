@@ -67,7 +67,6 @@ public class App {
 		case "colaborador":
 			menuUsuario();
 			break;
-
 		}
 	}
 	
@@ -125,7 +124,7 @@ public class App {
             System.out.println("4. Asignar prioridades");
             System.out.println("5. Generar reporte de proyectos");
             System.out.println("6. Cerrar sesión");
-            System.out.println("6. Detener sistema\n");
+            System.out.println("7. Detener sistema\n");
             System.out.print("Seleccione una opción: ");
             opcion = Integer.valueOf(scan.nextLine());
 
@@ -217,7 +216,7 @@ public class App {
                 	System.out.println("Sesión cerrada...");
                 	System.out.println("Saliendo del menú admin...");
                 	Login();
-                	break;//return?
+                	return;
                 case 7:
                 	System.out.println("Apagando el sistema...");
                 	return;
@@ -225,7 +224,7 @@ public class App {
                 	System.out.println("Opción inválida.");
                 	break;
             }
-        } while (opcion != 0);
+        } while (opcion != 7);
     }
 	
 	/**
@@ -271,7 +270,7 @@ public class App {
                 case 5:
                 	System.out.println("Saliendo del menú usuario...");
                 	Login();
-                	break;
+                	return;
                 case 6:
                 	System.out.println("Apagando el sistema...");
                 	return;
@@ -281,7 +280,7 @@ public class App {
                 	break;
             }
             
-        } while (opcion != 0);
+        } while (opcion != 6);
     }
 
 }
