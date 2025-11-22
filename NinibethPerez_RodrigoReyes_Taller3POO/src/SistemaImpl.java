@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class SistemaImpl implements Sistema {
 
-	public Factory f = Factory.InstanciarFactory();
+	public Factory factory = Factory.InstanciarFactory();
 	public ArrayList<Usuario> usuarios = new ArrayList<>();
 	public ArrayList<Proyectos> proyectos = new ArrayList<>();
 	public ArrayList<Tarea> tareas = new ArrayList<>();
@@ -25,17 +25,17 @@ public class SistemaImpl implements Sistema {
 
 	@Override
 	public void LecturaUsuarios(String[] info) {
-		usuarios.add(f.Crear_Usuario(info));
+		usuarios.add(factory.Crear_Usuario(info));
 	}
 
 	@Override
 	public void LecturaProyectos(String[] info) {
-		proyectos.add(f.Crear_Proyecto(info, usuarios));
+		proyectos.add(factory.Crear_Proyecto(info, usuarios));
 	}
 
 	@Override
 	public void LecturaTareas(String[] info) {
-		tareas.add(f.Crear_Tarea(info, usuarios, proyectos));
+		tareas.add(factory.Crear_Tarea(info, usuarios, proyectos));
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class SistemaImpl implements Sistema {
 			return;
 		}
 		String[] info = {id, nombre, resp};
-		Proyectos p = f.Crear_Proyecto(info, usuarios);
+		Proyectos p = factory.Crear_Proyecto(info, usuarios);
 		proyectos.add(p);
 		responsable.agregarProyecto(p);
 
@@ -137,7 +137,7 @@ public class SistemaImpl implements Sistema {
 		}
 
 		String[] info = { proyectoId, idTarea, tipo, descripcion, estado, userResponsable, complejidad, fecha };
-		Tarea t = f.Crear_Tarea(info, usuarios, proyectos);
+		Tarea t = factory.Crear_Tarea(info, usuarios, proyectos);
 		System.out.println(t);
 		this.tareas.add(t);
 

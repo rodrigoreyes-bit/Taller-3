@@ -17,11 +17,11 @@ import java.io.FileNotFoundException;
 
 public class App {
 	public static File file;
-	public static Scanner t;
-	public static Scanner s = new Scanner(System.in);
+	public static Scanner scanArch;
+	public static Scanner scan = new Scanner(System.in);
 	public static SistemaImpl sistema = SistemaImpl.InstanciarSistemaImpl();
-	public static Usuario u;
-	public static Visitor v = new VisitorAcciones();
+	public static Usuario usuario;
+	public static Visitor visitor = new VisitorAcciones();
 
 	/**
     * Punto de entrada principal de la aplicación.
@@ -48,10 +48,10 @@ public class App {
 		do {
 			System.out.println("Ingrese su nombre de usuario.");
 			System.out.print(">> ");
-			String usuario = s.nextLine();
+			String usuario = scan.nextLine();
 			System.out.println("Ingrese su contraseña.");
 			System.out.print(">> ");
-			String contraseña = s.nextLine();
+			String contraseña = scan.nextLine();
 
 			usuarioLog = sistema.CheckDeInformacion(usuario, contraseña);
 
@@ -78,9 +78,9 @@ public class App {
      */
 	private static void LecturaTareas() throws FileNotFoundException {
 		file = new File("tareas.txt");
-		t = new Scanner(file);
-		while (t.hasNextLine()) {
-			sistema.LecturaTareas(t.nextLine().split("\\|"));
+		scanArch = new Scanner(file);
+		while (scanArch.hasNextLine()) {
+			sistema.LecturaTareas(scanArch.nextLine().split("\\|"));
 		}
 	}
 	
@@ -91,9 +91,9 @@ public class App {
      */
 	private static void LecturaProyectos() throws FileNotFoundException {
 		file = new File("proyectos.txt");
-		t = new Scanner(file);
-		while (t.hasNextLine()) {
-			sistema.LecturaProyectos(t.nextLine().split("\\|"));
+		scanArch = new Scanner(file);
+		while (scanArch.hasNextLine()) {
+			sistema.LecturaProyectos(scanArch.nextLine().split("\\|"));
 		}
 	}
 	
@@ -104,9 +104,9 @@ public class App {
      */
 	private static void LecturaUsuarios() throws FileNotFoundException {
 		file = new File("usuarios.txt");
-		t = new Scanner(file);
-		while (t.hasNextLine()) {
-			sistema.LecturaUsuarios(t.nextLine().split("\\|"));
+		scanArch = new Scanner(file);
+		while (scanArch.hasNextLine()) {
+			sistema.LecturaUsuarios(scanArch.nextLine().split("\\|"));
 		}
 	}
 	
@@ -115,7 +115,7 @@ public class App {
      */
 	private static void menuAdmin(){
 		//En caso que el usuario ingresado tenga el rol Admin se abre este menú de opciones.
-		s = new Scanner(System.in);
+		scan = new Scanner(System.in);
         int opcion = -1;
         do {
             System.out.println("\n--- MENÚ ADMIN ---");
@@ -127,7 +127,7 @@ public class App {
             System.out.println("6. Cerrar sesión");
             System.out.println("6. Detener sistema\n");
             System.out.print("Seleccione una opción: ");
-            opcion = Integer.valueOf(s.nextLine());
+            opcion = Integer.valueOf(scan.nextLine());
 
             switch (opcion) {
                 case 1:
@@ -139,25 +139,25 @@ public class App {
                 	System.out.println("1. Agregar un proyecto");
                 	System.out.println("2. Eliminar un proyecto");
                 	System.out.print(">> ");
-                	int eleccion = Integer.valueOf(s.nextLine());
+                	int eleccion = Integer.valueOf(scan.nextLine());
                 	
                 	if (eleccion == 1) {
-                		s = new Scanner(System.in);
+                		scan = new Scanner(System.in);
             		    System.out.print("Ingrese nombre del proyecto: ");
-            		    String nombre = s.nextLine();
+            		    String nombre = scan.nextLine();
 
             		    System.out.print("Ingrese username del responsable: ");
-            		    String resp = s.nextLine();
+            		    String resp = scan.nextLine();
             		    
             		    System.out.print("Ingrese el ID del proyecto: ");
-            		    String ID = s.nextLine();
+            		    String ID = scan.nextLine();
             		    
             		    sistema.AgregarProyecto_Admin(ID, nombre, resp);
             		    
                 	} else {
                 		sistema.MostrarListaDeProyectosBasica();
                 		System.out.print("Ingrese el ID del proyecto que desea eliminar: ");
-                	    String idBuscado = s.nextLine();
+                	    String idBuscado = scan.nextLine();
                 	    sistema.EliminarProyecto_Admin(idBuscado);
                 	}
                 	break;
@@ -167,27 +167,27 @@ public class App {
                 	System.out.println("1. Agregar una tarea");
                 	System.out.println("2. Eliminar una tarea");
                 	System.out.print(">> ");
-                	eleccion = Integer.valueOf(s.nextLine());
+                	eleccion = Integer.valueOf(scan.nextLine());
                 	
                 	if (eleccion == 1) {
                 		sistema.MostrarListaDeProyectosBasica();
-                		s = new Scanner(System.in);
+                		scan = new Scanner(System.in);
             		    System.out.print("\nIngrese el ID del proyecto al que desea agregar la tarea: ");
-            		    String idProyecto = s.nextLine();
+            		    String idProyecto = scan.nextLine();
             		    System.out.print("Ingrese el ID de la tarea: ");
-            		    String ID = s.nextLine();
+            		    String ID = scan.nextLine();
             		    System.out.print("Ingrese el tipo (Bug | Feature | Documentacion): ");
-            		    String tipo = s.nextLine();
+            		    String tipo = scan.nextLine();
             		    System.out.print("Ingrese la descripción: ");
-            		    String desc = s.nextLine();
+            		    String desc = scan.nextLine();
             		    System.out.print("Ingrese el estado (Pendiente | En Proceso | Completada): ");
-            		    String estado = s.nextLine();
+            		    String estado = scan.nextLine();
             		    System.out.print("Ingrese el username del responsable: ");
-            		    String userResp = s.nextLine();
+            		    String userResp = scan.nextLine();
             		    System.out.print("Ingrese la complejidad (Alta | Media | Baja): ");
-            		    String complejidad = s.nextLine();
+            		    String complejidad = scan.nextLine();
             		    System.out.print("Ingrese la fecha ([Año-Mes-Dia]. Ejemplo: 2025-08-01): ");
-            		    String fecha = s.nextLine();
+            		    String fecha = scan.nextLine();
             		    
             		    sistema.AgregarTarea_Admin(idProyecto, ID, tipo, desc, estado, userResp, complejidad, fecha);
             		    
@@ -195,7 +195,7 @@ public class App {
                 	} else {
                 		sistema.MostrarInfoTareas();
                 		System.out.print("Ingrese el ID de la tarea a eliminar: ");
-            		    String idTarea = s.nextLine();
+            		    String idTarea = scan.nextLine();
             		    sistema.EliminarTarea_Admin(idTarea);
                 	}
                 	break;
@@ -205,7 +205,7 @@ public class App {
                 	System.out.println("Su estrategia de trabajo actual es de tipo: " + sistema.getEstrategia());
                 	System.out.println("1) Por fecha de creación\n2) Por impacto\n3) Por complejidad\n");
                 	System.out.print("> ");
-            		int estrategia = Integer.valueOf(s.nextLine());
+            		int estrategia = Integer.valueOf(scan.nextLine());
             		System.out.println(sistema.AsignarPrioridades_Strategy_Admin(estrategia));
                 	break;
                 	
@@ -233,7 +233,7 @@ public class App {
      */
 	private static void menuUsuario() {
 		//En caso que el usuario ingresado tenga el rol User se abre este menu de opciones.
-		s = new Scanner(System.in);
+		scan = new Scanner(System.in);
         int opcion = -1;
         do {
             System.out.println("\n--- MENÚ USUARIO ---");
@@ -244,7 +244,7 @@ public class App {
             System.out.println("5. Cerrar sesión");
             System.out.println("6. Detener sistema\n");
             System.out.print("Seleccione una opción: ");
-            opcion = Integer.valueOf(s.nextLine());
+            opcion = Integer.valueOf(scan.nextLine());
 
             switch (opcion) {
                 case 1:
@@ -252,20 +252,20 @@ public class App {
                 	break;
                 	
                 case 2:
-                	sistema.VerTareasAsignadas_Usuario(u);
+                	sistema.VerTareasAsignadas_Usuario(usuario);
                 	break;
                 	
                 case 3:
                 	sistema.MostrarInfoTareas();
                 	System.out.println("Ingrese el ID de la tarea que desea modificar: \n");
-                	String opcionMenu = s.nextLine();
+                	String opcionMenu = scan.nextLine();
                 	System.out.println("\nA que estado desea cambiar la tarea elegida?\n1) Pendiente\n2) En progreso\n3) Completada\n>");
-                	int indice = Integer.valueOf(s.nextLine());
+                	int indice = Integer.valueOf(scan.nextLine());
                 	System.out.println(sistema.ActualizarEstadoTarea_Usuario(opcionMenu,indice));
                 	break;
                 	
                 case 4:
-                	sistema.AplicarVisitor_Usuario(v);
+                	sistema.AplicarVisitor_Usuario(visitor);
                 	break;
                 	
                 case 5:
