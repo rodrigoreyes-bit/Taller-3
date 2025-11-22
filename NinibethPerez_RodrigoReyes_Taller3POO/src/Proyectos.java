@@ -44,6 +44,10 @@ public class Proyectos {
 		this.Tareas.add(t);
 	}
 	
+	
+	public void setTareas(ArrayList<Tarea> tareas) {
+		Tareas = tareas;
+	}
 	/**
      * Genera una representación en cadena del proyecto, incluyendo una lista detallada de sus tareas.
      * @return Una cadena con la información completa del proyecto y sus tareas.
