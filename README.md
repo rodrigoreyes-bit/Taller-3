@@ -49,8 +49,8 @@ Incluye dos roles principales:
 - `proyectos.txt`  
 - `tareas.txt`  
 - `reporte.txt`  
-- `DiagramaDominio_Taller3.pdf`  
-- `DiagramaClases_Taller3.pdf`  
+- `Diagrama de dominio.drawio.pdf`  
+- `Diagrama de Clases Taller3.drawio (2).pdf`  
 - Carpeta `src/`  
 - Carpeta `assets/`  
 
