@@ -312,7 +312,7 @@ public class SistemaImpl implements Sistema {
 
 			for (Proyectos p : proyectos) {
 				escribir.write("------------------------------------------\n");
-				estrategia.asignarPrioridad(p.getTareas());
+				p.setTareas(estrategia.asignarPrioridad(p.getTareas()));
 				escribir.write(p.toString() + "\n");
 			}
 
