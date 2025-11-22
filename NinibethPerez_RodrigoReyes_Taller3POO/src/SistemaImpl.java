@@ -2,7 +2,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
 public class SistemaImpl implements Sistema {
 
 	public Factory factory = Factory.InstanciarFactory();
@@ -61,14 +60,14 @@ public class SistemaImpl implements Sistema {
 			System.out.println("Usuario no encontrado");
 			return;
 		}
-		
-		for(Proyectos p: proyectos) {
-			if(p.getID().equals(id)) {
+
+		for (Proyectos p : proyectos) {
+			if (p.getID().equals(id)) {
 				System.out.println("Error | ID ya ocupado en otro proyecto.");
 				return;
 			}
 		}
-		String[] info = {id, nombre, resp};
+		String[] info = { id, nombre, resp };
 		Proyectos p = factory.Crear_Proyecto(info, usuarios);
 		proyectos.add(p);
 		responsable.agregarProyecto(p);
@@ -141,30 +140,30 @@ public class SistemaImpl implements Sistema {
 			System.out.println("Ingrese una complejidad válida.");
 			return;
 		}
-		
+
 		String ti = tipo.toLowerCase();
 		if (!ti.equals("bug") && !ti.equals("feature") && !ti.equals("documentacion")) {
 			System.out.println("Ingrese un tipo válido.");
 			return;
 		}
-		
+
 		if (fecha.split("-").length != 3) {
 			System.out.println("Ingrese una fecha válida.");
 			return;
 		}
-		
-		for(Tarea t: responsable.getTareasResponsable()) {
-			if(t.getFecha().equals(fecha)) {
+
+		for (Tarea t : responsable.getTareasResponsable()) {
+			if (t.getFecha().equals(fecha)) {
 				System.out.println("Ingrese una fecha disponible.");
 				return;
 			}
 		}
-		
-		for(Tarea t: tareas) {
-			if(t.getID().equals(idTarea)) {
+
+		for (Tarea t : tareas) {
+			if (t.getID().equals(idTarea)) {
 				System.out.println("Error | ID duplicado.");
 				return;
-				
+
 			}
 		}
 
@@ -215,8 +214,8 @@ public class SistemaImpl implements Sistema {
 
 	@Override
 	public void VerTareasAsignadas_Usuario(Usuario usuario) {
-		for(Tarea t: tareas) {
-			if(t.getResponsable().equals(usuario)) {
+		for (Tarea t : tareas) {
+			if (t.getResponsable().equals(usuario)) {
 				System.out.println(t);
 			}
 		}
@@ -225,33 +224,33 @@ public class SistemaImpl implements Sistema {
 	@Override
 	public String ActualizarEstadoTarea_Usuario(String id, int opcion) {
 		Tarea tarea = null;
-		for(Tarea t: tareas) {
-			if(t.getID().equals(id)) {
+		for (Tarea t : tareas) {
+			if (t.getID().equals(id)) {
 				tarea = t;
 				break;
 			}
 		}
-		
+
 		if (tarea == null) {
 			return "Tarea no encontrada";
 		}
-		
-		switch(opcion) {
+
+		switch (opcion) {
 		case 1:
-			if(!tarea.getEstado().equals("Pendiente")) {
+			if (!tarea.getEstado().equals("Pendiente")) {
 				tarea.setEstado("Pendiente");
 				return "Estado de tarea cambiado a 'Pendiente'.";
 			}
 			break;
 		case 2:
-			if(!tarea.getEstado().equals("En progreso")) {
+			if (!tarea.getEstado().equals("En progreso")) {
 				tarea.setEstado("En progreso");
 				return "Estado de tarea cambiado a 'En progreso'.";
 			}
-			
+
 			break;
 		case 3:
-			if(!tarea.getEstado().equals("Completada")) {
+			if (!tarea.getEstado().equals("Completada")) {
 				tarea.setEstado("Completada");
 				return "Estado de tarea cambiado a 'Completada'.";
 			}
@@ -263,9 +262,9 @@ public class SistemaImpl implements Sistema {
 
 	@Override
 	public void AplicarVisitor_Usuario(Visitor v) {
-		for(Proyectos p: proyectos) {
+		for (Proyectos p : proyectos) {
 			System.out.println(p.getID() + ":");
-			for(Tarea t: p.getTareas()) {
+			for (Tarea t : p.getTareas()) {
 				t.accept(v);
 			}
 		}
@@ -325,9 +324,9 @@ public class SistemaImpl implements Sistema {
 	}
 
 	public Usuario CheckDeInformacion(String usuario, String contraseña) {
-		for(Usuario u: usuarios) {
-			if(u.getUsername().equals(usuario)) {
-				if(u.getPassword().equals(contraseña)) {
+		for (Usuario u : usuarios) {
+			if (u.getUsername().equals(usuario)) {
+				if (u.getPassword().equals(contraseña)) {
 					System.out.println("Bienvenido de vuelta " + u.getUsername());
 					return u;
 				}
