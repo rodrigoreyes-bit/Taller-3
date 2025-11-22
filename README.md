@@ -88,7 +88,6 @@ Incluye dos roles principales:
 ---
 
 ## 🛠 Tecnologías y Patrones
-- Java 17+  
 - POO  
 - Singleton, Factory, Strategy, Visitor  
 - Proyecto hecho en eclipse  
